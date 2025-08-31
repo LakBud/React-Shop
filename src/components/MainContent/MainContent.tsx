@@ -9,22 +9,43 @@ const MainContent = () => {
   const { searchQuery, selectedCategory, minPrice, maxPrice, keyword } = useFilter();
 
   const [products, setProducts] = useState<any[]>([]);
+  const [cache, setCache] = useState<{ [key: string]: any[] }>({});
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const itemsPerPage = 20;
+  const totalProducts = 450;
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
   useEffect(() => {
+    const cacheKey = `${currentPage}-${keyword || "all"}`;
+
+    if (cache[cacheKey]) {
+      setProducts(cache[cacheKey]);
+      return;
+    }
+
+    setLoading(true);
     let url = `https://dummyjson.com/products?limit=${itemsPerPage}&skip=${(currentPage - 1) * itemsPerPage}`;
+
     if (keyword) {
       url = `https://dummyjson.com/products/search?q=${keyword}`;
     }
 
     axios
       .get(url)
-      .then((response) => setProducts(response.data.products))
-      .catch((error) => console.error("Error fetching Data", error));
-  }, [currentPage, keyword]);
+      .then((response) => {
+        setProducts(response.data.products);
+        setCache((prev) => ({
+          ...prev,
+          [cacheKey]: response.data.products,
+        }));
+      })
+      .catch((error) => console.error("Error fetching Data", error))
+      .finally(() => setLoading(false));
+  }, [currentPage, keyword, itemsPerPage, cache]);
 
   const getFilteredProducts = () => {
     let filteredProducts = products;
@@ -36,19 +57,17 @@ const MainContent = () => {
 
     switch (filter) {
       case "expensive":
-        return filteredProducts.sort((a, b) => b.price - a.price);
+        return [...filteredProducts].sort((a, b) => b.price - a.price);
       case "cheap":
-        return filteredProducts.sort((a, b) => a.price - b.price);
+        return [...filteredProducts].sort((a, b) => a.price - b.price);
       case "popular":
-        return filteredProducts.sort((a, b) => b.rating - a.rating);
+        return [...filteredProducts].sort((a, b) => b.rating - a.rating);
       default:
         return filteredProducts;
     }
   };
 
   const filteredProducts = getFilteredProducts();
-  const totalProducts = 100;
-  const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page);
@@ -93,9 +112,17 @@ const MainContent = () => {
 
       {/* Products Grid */}
       <div className="products-grid">
-        {filteredProducts.map((product) => (
-          <BookCard key={product.id} id={product.id} title={product.title} image={product.thumbnail} price={product.price} />
-        ))}
+        {loading
+          ? Array.from({ length: itemsPerPage }).map((_, i) => (
+              <div key={i} className="skeleton-card">
+                <div className="skeleton-image" />
+                <div className="skeleton-title" />
+                <div className="skeleton-price" />
+              </div>
+            ))
+          : filteredProducts.map((product) => (
+              <BookCard key={product.id} id={product.id} title={product.title} image={product.thumbnail} price={product.price} />
+            ))}
       </div>
 
       {/* Pagination */}
