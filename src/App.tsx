@@ -4,6 +4,7 @@ import MainContent from "./components/MainContent/MainContent";
 import ProductPage from "./components/ProductPage/ProductPage";
 import TopSellers from "./components/Sellers/TopSellers";
 import PopularBlogs from "./components/Blogs/PopularBlogs";
+import reactLogo from "./assets/React.png"; // Proper asset import
 import "./App.scss";
 
 function App() {
@@ -12,15 +13,21 @@ function App() {
 
   return (
     <div className="app-layout">
+      {/* Sidebar */}
       <Sidebar />
 
+      {/* Main content wrapper */}
       <div className="main-wrapper">
-        <img src="src/assets/React.png" alt="React-logo" className="w-[80px]" loading="lazy" />
+        {/* React logo */}
+        <img src={reactLogo} alt="React-logo" className="react-logo" loading="lazy" />
+
+        {/* Routes */}
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
 
+        {/* User container (TopSellers + PopularBlogs) */}
         {!hideUserContainer && (
           <div className="user-container">
             <TopSellers />
