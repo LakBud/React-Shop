@@ -15,6 +15,7 @@ function App() {
       <Sidebar />
 
       <div className="main-wrapper">
+        <img src="src/assets/React.png" alt="React-logo" className="w-[80px]" loading="lazy" />
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/product/:id" element={<ProductPage />} />

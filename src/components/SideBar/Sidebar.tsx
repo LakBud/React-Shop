@@ -59,7 +59,8 @@ const Sidebar = () => {
       </button>
 
       <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
-        <h1>⚡React Shop⚡</h1>
+        <h1>⚡ React Store ⚡</h1>
+
         <input type="text" placeholder="Search Product" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
 
         <div className="price-inputs">
