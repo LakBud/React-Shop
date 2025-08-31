@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App.tsx";
 import { FilterProvider } from "./components/context/FilterContext.tsx";
 import "./App.scss";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <FilterProvider>
-      <App />
+      <BrowserRouter basename="/React-Shop/">
+        <App />
+      </BrowserRouter>
     </FilterProvider>
   </StrictMode>
 );
