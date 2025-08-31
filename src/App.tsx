@@ -8,22 +8,20 @@ import "./App.scss";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/React-Shop/">
       <div className="app-layout">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
+        <Sidebar />
 
         <div className="main-wrapper">
           <Routes>
             <Route path="/" element={<MainContent />} />
             <Route path="/product/:id" element={<ProductPage />} />
           </Routes>
-        </div>
 
-        <div className="user-container">
-          <TopSellers />
-          <PopularBlogs />
+          <div className="user-container">
+            <TopSellers />
+            <PopularBlogs />
+          </div>
         </div>
       </div>
     </Router>
