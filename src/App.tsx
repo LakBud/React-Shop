@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/SideBar/Sidebar";
 import MainContent from "./components/MainContent/MainContent";
 import ProductPage from "./components/ProductPage/ProductPage";
@@ -8,7 +8,7 @@ import "./App.scss";
 
 function App() {
   return (
-    <Router basename="/React-Shop/">
+    <Router>
       <div className="app-layout">
         <Sidebar />
 
