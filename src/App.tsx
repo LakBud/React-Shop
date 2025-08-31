@@ -19,7 +19,7 @@ function App() {
       {/* Main content wrapper */}
       <div className="main-wrapper">
         {/* React logo */}
-        <img src={reactLogo} alt="React-logo" className="react-logo" loading="lazy" />
+        <img src={reactLogo} alt="React-logo" className="w-[80px]" loading="lazy" />
 
         {/* Routes */}
         <Routes>
