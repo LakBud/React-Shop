@@ -3,6 +3,7 @@
   display: flex;
   min-height: 100vh;
   gap: 1.5rem;
+  background: linear-gradient(135deg, #e2ecfca2, #caf0f8); // soft gradient background
 
   @media (max-width: 1024px) {
     flex-direction: column;
@@ -13,37 +14,79 @@
 .sidebar {
   flex-shrink: 0;
   width: 16rem; // 256px
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #e2ecfca2; // semi-transparent
+  backdrop-filter: blur(2px); // glass effect
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  /* Make sidebar scrollable */
+  max-height: 100vh;
+  overflow-y: auto;
+
   @media (max-width: 1024px) {
     width: 100%;
+    max-height: none; // allow natural height on mobile
   }
 }
 
 /* Main content area */
 .main-wrapper {
-  flex: 1; // take remaining space
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem;
-  background: #f9f9f9;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* User container on desktop: right side */
 .user-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   width: 22rem;
   flex-shrink: 0;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
 
   @media (max-width: 1024px) {
-    flex-direction: row; // side-by-side on tablet/mobile
+    flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-    > * {
-      flex: 1 1 45%; // each card ~half width
-      max-width: 100%;
+  /* Glass cards inside user-container */
+  & > * {
+    flex: 1 1 48%;
+    min-width: 200px;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
   }
+}
+
+/* Optional: smooth transition for the whole layout */
+.app-layout,
+.sidebar,
+.main-wrapper,
+.user-container {
+  transition: all 0.3s ease;
 }

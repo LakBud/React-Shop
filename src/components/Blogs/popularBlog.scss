@@ -3,7 +3,7 @@
   padding: 1.25rem;
   border: 1px solid #eee;
   border-radius: 1rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
   width: 100%;
   max-width: 23rem; // desktop max width
 
@@ -39,6 +39,7 @@
 
         @media (max-width: 480px) {
           font-size: 0.95rem;
+          margin-top: 1rem;
         }
       }
 
