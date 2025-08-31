@@ -1,0 +1,33 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Sidebar from "./components/SideBar/Sidebar";
+import MainContent from "./components/MainContent/MainContent";
+import ProductPage from "./components/ProductPage/ProductPage";
+import TopSellers from "./components/Sellers/TopSellers";
+import PopularBlogs from "./components/Blogs/PopularBlogs";
+import "./App.scss";
+
+function App() {
+  return (
+    <Router>
+      <div className="app-layout">
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+
+        <div className="main-wrapper">
+          <Routes>
+            <Route path="/" element={<MainContent />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+          </Routes>
+        </div>
+
+        <div className="user-container">
+          <TopSellers />
+          <PopularBlogs />
+        </div>
+      </div>
+    </Router>
+  );
+}
+
+export default App;

@@ -1,0 +1,67 @@
+.popular-blogs {
+  background: #fff;
+  padding: 1.25rem;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 23rem; // desktop max width
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .blog-title {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+
+        @media (max-width: 480px) {
+          font-size: 0.95rem;
+        }
+      }
+
+      .blog-author {
+        color: #6b7280; // gray-600
+        font-size: 0.9rem;
+      }
+
+      .blog-stats {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+        gap: 1rem;
+
+        svg {
+          color: #9ca3af; // gray-400
+        }
+
+        span {
+          color: #6b7280;
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+}

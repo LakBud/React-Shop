@@ -1,0 +1,125 @@
+.top-sellers {
+  background: #fff;
+  padding: 2rem;
+  border: 1px solid #eee;
+  border-radius: 1.25rem;
+  margin: 3rem auto 0 auto;
+  width: 100%;
+  max-width: 23rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.3s ease;
+      flex-wrap: wrap; // allow wrapping on small screens
+
+      &:hover {
+        background: #fafafa;
+      }
+
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .author-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 1 1 auto; // allows it to shrink on small screens
+
+        img {
+          width: 55px;
+          height: 55px;
+          border-radius: 50%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+
+        span {
+          font-size: 1.05rem;
+          font-weight: 500;
+          @media (max-width: 480px) {
+            font-size: 0.95rem;
+          }
+        }
+      }
+
+      button {
+        padding: 0.55rem 1.2rem;
+        border-radius: 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+        transform-origin: center;
+        margin-left: auto; // pushes button to right on large screens
+
+        &.following {
+          background-color: #ef4444; // red-500
+          color: #fff;
+
+          &:hover {
+            background-color: #dc2626;
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+
+        &.not-following {
+          background-color: #000;
+          color: #fff;
+
+          &:hover {
+            background-color: #333;
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+
+        @media (max-width: 480px) {
+          font-size: 0.85rem;
+          padding: 0.45rem 1rem;
+          margin-left: 0; // reset left margin
+          margin-top: 0.5rem; // add spacing below name
+          width: 100%; // full width button on mobile
+        }
+      }
+    }
+  }
+}

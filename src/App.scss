@@ -1,0 +1,49 @@
+/* Wrapper for main layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  gap: 1.5rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  flex-shrink: 0;
+  width: 16rem; // 256px
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+}
+
+/* Main content area */
+.main-wrapper {
+  flex: 1; // take remaining space
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: #f9f9f9;
+}
+
+/* User container on desktop: right side */
+.user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 22rem;
+  flex-shrink: 0;
+
+  @media (max-width: 1024px) {
+    flex-direction: row; // side-by-side on tablet/mobile
+    width: 100%;
+    flex-wrap: wrap;
+
+    > * {
+      flex: 1 1 45%; // each card ~half width
+      max-width: 100%;
+    }
+  }
+}
